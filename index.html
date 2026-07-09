@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofertas Especiais - Achados do Mercado Livre</title>
+    <meta name="description" content="Encontre os melhores produtos em promoção no Mercado Livre. Curadoria exclusiva com descontos imperdíveis e frete grátis!">
+    <!-- Google Fonts: Outfit e Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=1.0.7">
+</head>
+<body>
+    <!-- Top Alert Bar -->
+    <div class="top-bar">
+        <p><i class="fa-solid fa-bolt"></i> Ofertas Atualizadas Diariamente! Clique para garantir o menor preço.</p>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <a href="#" class="logo" id="store-logo">
+                <span class="logo-accent"><i class="fa-solid fa-tags"></i> Promoções</span>
+            </a>
+            
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Buscar produtos em promoção..." autocomplete="off">
+                <button type="button" id="search-button" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+    <!-- Main Catalog Section -->
+    <main class="catalog-section" id="catalogo">
+        <div class="catalog-header">
+            <div class="catalog-title">
+                <h2>Vitrine de Ofertas</h2>
+                <p id="results-count">Carregando ofertas...</p>
+            </div>
+            <!-- Quick filters sorting -->
+            <div class="catalog-filters">
+                <select id="sort-select" aria-label="Ordenar produtos">
+                    <option value="default">Ordenar por: Destaques</option>
+                    <option value="price-asc">Menor Preço</option>
+                    <option value="price-desc">Maior Preço</option>
+                    <option value="discount">Maior Desconto</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Product Grid -->
+        <div class="product-grid" id="product-grid">
+            <!-- Dynamically populated via JS -->
+            <div class="loading-spinner">
+                <i class="fa-solid fa-circle-notch fa-spin"></i> Buscando ofertas...
+            </div>
+        </div>
+        
+        <!-- Empty State (No results) -->
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <i class="fa-solid fa-box-open"></i>
+            <h3>Nenhum produto encontrado</h3>
+            <p>Tente buscar por outro termo ou mude a categoria selecionada.</p>
+            <button class="btn btn-primary" id="clear-search">Ver todos os produtos</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 MercadoAfiliados. Todos os direitos reservados.</p>
+            <p class="disclaimer"><strong>Aviso Importante:</strong> Nós somos um site afiliado do Mercado Livre. Ao clicar em comprar, você será redirecionado ao site ou aplicativo oficial do Mercado Livre para concluir a compra. Não realizamos vendas diretas nem cobramos taxas extras.</p>
+        </div>
+    </footer>
+
+    <!-- Script file -->
+    <script src="catalog.js?v=1.0.7" defer></script>
+    <script src="app.js?v=1.0.7" defer></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Produto - Promoções</title>
+    <meta name="description" content="Confira os detalhes deste produto em promoção. Compre direto no Mercado Livre com total segurança.">
+    <!-- Google Fonts: Outfit e Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=1.0.7">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Back Button -->
+            <a href="index.html" class="back-link" id="back-link">
+                <i class="fa-solid fa-chevron-left"></i> Voltar
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Detail Section -->
+    <main class="product-detail-container" id="product-detail-container">
+        <!-- Dynamically populated via JS -->
+        <div class="loading-spinner">
+            <i class="fa-solid fa-circle-notch fa-spin"></i> Carregando detalhes do produto...
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 MercadoAfiliados. Todos os direitos reservados.</p>
+            <p class="disclaimer"><strong>Aviso Importante:</strong> Nós somos um site afiliado do Mercado Livre. Ao clicar em comprar, você será redirecionado ao site ou aplicativo oficial do Mercado Livre para concluir a compra. Não realizamos vendas diretas nem cobramos taxas extras.</p>
+        </div>
+    </footer>
+
+    <!-- Script files -->
+    <script src="catalog.js?v=1.0.7" defer></script>
+    <script src="product.js?v=1.0.7" defer></script>
+</body>
+</html>
