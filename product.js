@@ -63,7 +63,7 @@ function renderProductDetails(container, product) {
             <!-- Coluna Esquerda: Galeria de Imagens -->
             <div class="product-gallery">
                 <div class="main-image-box" id="main-image-box">
-                    <i class="${product.imageIcon}" id="main-image-icon"></i>
+                    <img src="${product.imagePath}" alt="${product.title}" class="product-detail-real-img" id="main-image-pic">
                 </div>
             </div>
 
@@ -88,7 +88,7 @@ function renderProductDetails(container, product) {
 
                 <!-- Botão de Compra Direta -->
                 <button class="detail-buy-btn" id="buy-button" onclick="handleBuyClick(${product.id})">
-                    <i class="fa-solid fa-cart-shopping"></i> Comprar no Mercado Livre
+                    <i class="fa-solid fa-cart-shopping"></i> Comprar na Shopee
                 </button>
 
                 <!-- Descrição Curta -->
@@ -145,8 +145,8 @@ window.handleBuyClick = function(productId) {
         <div class="toast-content">
             <i class="fa-solid fa-circle-notch fa-spin"></i>
             <div>
-                <h5>Redirecionando para o Mercado Livre</h5>
-                <p>Abrindo aplicativo oficial...</p>
+                <h5>Redirecionando para a Loja Oficial</h5>
+                <p>Aplicando o melhor desconto de parceiro...</p>
             </div>
         </div>
     `;

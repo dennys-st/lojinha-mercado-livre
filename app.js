@@ -132,9 +132,7 @@ function renderProducts() {
             <article class="product-card" data-id="${product.id}" onclick="goToProduct(${product.id})" style="cursor: pointer;">
                 ${product.tag ? `<span class="product-tag ${product.tag.toLowerCase().includes('frete') ? 'free-shipping' : ''}">${product.tag}</span>` : ''}
                 <div class="product-image-container">
-                    <div class="product-placeholder-img">
-                        <i class="${product.imageIcon}"></i>
-                    </div>
+                    <img src="${product.imagePath}" alt="${product.title}" class="product-real-img" loading="lazy">
                 </div>
                 <div class="product-info">
                     <span class="product-category">${product.category}</span>
