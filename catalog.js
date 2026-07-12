@@ -11,7 +11,15 @@ const PRODUTOS = [
         ratingCount: 142,
         oldPrice: 59.90,
         price: 34.90,
-        imagePath: "babydoll.jpg",
+        imagePath: "babydoll-coracoes-pretos.jpg",
+        images: [
+            "babydoll-coracoes-pretos.jpg",
+            "babydoll-marrom.jpg",
+            "babydoll-rosa.jpg",
+            "babydoll-rosa-chiclete.jpg",
+            "babydoll-vermelho.jpg",
+            "babydoll-vermelho-coracoes.jpg"
+        ],
         description: "Durma com muito mais estilo, frescor e aconchego com o nosso Baby Doll Feminino Canelado de Coração. Confeccionado em malha canelada premium, ele oferece um toque suave sobre a pele e alta respirabilidade, sendo a escolha ideal para noites quentes de verão. A modelagem soltinha proporciona total liberdade de movimentos para você relaxar, enquanto a estampa romântica de corações traz um charme delicado e feminino. Ideal para noites tranquilas de sono ou para curtir momentos de descanso em casa.",
         specs: {
             "Composição": "Malha canelada leve (Poliéster e Elastano)",

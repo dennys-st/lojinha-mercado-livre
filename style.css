@@ -902,7 +902,7 @@ a {
     overflow: hidden;
 }
 
-.main-image-box i {
+.main-image-box > i {
     font-size: 6rem;
     color: var(--color-primary);
     transition: all 0.25s ease-out;
@@ -1116,7 +1116,7 @@ a {
         height: 250px;
     }
     
-    .main-image-box i {
+    .main-image-box > i {
         font-size: 4rem;
     }
     
@@ -1184,6 +1184,89 @@ a {
     max-height: 100%;
     object-fit: contain;
     border-radius: var(--radius-md);
+}
+
+/* ==========================================
+   CARROSSEL DE IMAGENS DO PRODUTO (CONTROLS)
+   ========================================== */
+.nav-arrow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: var(--transition-fast);
+}
+
+.nav-arrow-btn i {
+    font-size: 1rem;
+    color: var(--color-primary);
+    display: block;
+}
+
+.nav-arrow-btn:hover {
+    background-color: #FFFFFF;
+    color: var(--color-primary);
+    transform: translateY(-50%) scale(1.06);
+}
+
+.nav-arrow-btn.prev {
+    left: 12px;
+}
+
+.nav-arrow-btn.next {
+    right: 12px;
+}
+
+/* Dots Indicators */
+.carousel-indicators {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 10;
+}
+
+.indicator-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.15);
+    transition: var(--transition-fast);
+    cursor: pointer;
+}
+
+.indicator-dot.active {
+    width: 14px;
+    border-radius: 3px;
+    background-color: var(--color-primary);
+}
+
+@media (max-width: 600px) {
+    .nav-arrow-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+    .nav-arrow-btn.prev {
+        left: 8px;
+    }
+    .nav-arrow-btn.next {
+        right: 8px;
+    }
 }
 
 

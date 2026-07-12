@@ -56,15 +56,40 @@ function renderProductDetails(container, product) {
         </tr>
     `).join('');
 
+    // Montar miniaturas da galeria com imagens reais
+    const galleryThumbs = product.images && product.images.length > 0 ? product.images.map((imgUrl, index) => `
+        <button class="thumb-btn ${index === 0 ? 'active' : ''}" onclick="switchMainImage(this, '${imgUrl}')" aria-label="Visualizar foto ${index + 1}">
+            <img src="${imgUrl}" alt="Miniatura ${index + 1}" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-sm);">
+        </button>
+    `).join('') : '';
+
     // Renderizar HTML dinâmico
     container.innerHTML = `
         <div class="product-detail-layout">
             
             <!-- Coluna Esquerda: Galeria de Imagens -->
             <div class="product-gallery">
-                <div class="main-image-box" id="main-image-box">
+                <div class="main-image-box" id="main-image-box" onclick="nextImage()" style="position: relative; cursor: pointer;">
+                    <!-- Seta Esquerda -->
+                    <button class="nav-arrow-btn prev" onclick="event.stopPropagation(); prevImage()" aria-label="Imagem Anterior">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+                    
                     <img src="${product.imagePath}" alt="${product.title}" class="product-detail-real-img" id="main-image-pic">
+                    
+                    <!-- Seta Direita -->
+                    <button class="nav-arrow-btn next" onclick="event.stopPropagation(); nextImage()" aria-label="Próxima Imagem">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Indicadores de Pontos -->
+                    <div class="carousel-indicators">
+                        ${product.images.map((_, idx) => `
+                            <span class="indicator-dot ${idx === 0 ? 'active' : ''}" onclick="event.stopPropagation(); goToImageIndex(${idx})"></span>
+                        `).join('')}
+                    </div>
                 </div>
+                ${galleryThumbs ? `<div class="gallery-thumbs">${galleryThumbs}</div>` : ''}
             </div>
 
             <!-- Coluna Direita: Informações e Compra -->
@@ -115,23 +140,73 @@ function renderProductDetails(container, product) {
 // GERENCIADORES DE INTERAÇÃO
 // ==========================================
 
-// Alternar imagem principal ao clicar na miniatura da galeria
-window.switchMainImage = function(button, imgClass) {
-    // Remover classe ativa de todas as miniaturas e aplicar no botão clicado
-    const thumbs = document.querySelectorAll(".thumb-btn");
-    thumbs.forEach(t => t.classList.remove("active"));
-    button.classList.add("active");
+let currentImageIndex = 0;
 
-    // Mudar classe do ícone principal com animação suave
-    const mainIcon = document.getElementById("main-image-icon");
-    mainIcon.style.opacity = '0';
-    mainIcon.style.transform = 'scale(0.8)';
+window.goToImageIndex = function(index) {
+    const product = PRODUTOS[0];
+    if (!product || !product.images || product.images.length === 0) return;
     
-    setTimeout(() => {
-        mainIcon.className = imgClass;
-        mainIcon.style.opacity = '1';
-        mainIcon.style.transform = 'scale(1)';
-    }, 150);
+    // Rotação circular de índice
+    if (index >= product.images.length) {
+        currentImageIndex = 0;
+    } else if (index < 0) {
+        currentImageIndex = product.images.length - 1;
+    } else {
+        currentImageIndex = index;
+    }
+    
+    const nextImgUrl = product.images[currentImageIndex];
+    
+    // Transição suave da imagem principal
+    const mainPic = document.getElementById("main-image-pic");
+    if (mainPic) {
+        mainPic.style.opacity = '0';
+        mainPic.style.transform = 'scale(0.97)';
+        
+        setTimeout(() => {
+            mainPic.src = nextImgUrl;
+            mainPic.style.opacity = '1';
+            mainPic.style.transform = 'scale(1)';
+        }, 120);
+    }
+    
+    // Atualizar miniaturas da galeria
+    const thumbs = document.querySelectorAll(".thumb-btn");
+    thumbs.forEach((t, idx) => {
+        if (idx === currentImageIndex) {
+            t.classList.add("active");
+            t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        } else {
+            t.classList.remove("active");
+        }
+    });
+    
+    // Atualizar pontos indicadores
+    const dots = document.querySelectorAll(".indicator-dot");
+    dots.forEach((d, idx) => {
+        if (idx === currentImageIndex) {
+            d.classList.add("active");
+        } else {
+            d.classList.remove("active");
+        }
+    });
+};
+
+window.nextImage = function() {
+    goToImageIndex(currentImageIndex + 1);
+};
+
+window.prevImage = function() {
+    goToImageIndex(currentImageIndex - 1);
+};
+
+// Alternar imagem principal ao clicar na miniatura da galeria
+window.switchMainImage = function(button, imgUrl) {
+    const product = PRODUTOS[0];
+    const index = product.images.indexOf(imgUrl);
+    if (index > -1) {
+        goToImageIndex(index);
+    }
 };
 
 // Manipular o clique de compra (exibe toast e redireciona na MESMA aba)
