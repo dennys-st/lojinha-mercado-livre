@@ -11,10 +11,8 @@ let sortBy = "default";
 // SELETORES DOM
 // ==========================================
 const productGrid = document.getElementById("product-grid");
-const resultsCount = document.getElementById("results-count");
 const searchInput = document.getElementById("search-input");
 const searchButton = document.getElementById("search-button");
-const sortSelect = document.getElementById("sort-select");
 const emptyState = document.getElementById("empty-state");
 const clearSearchBtn = document.getElementById("clear-search");
 
@@ -38,7 +36,7 @@ function showRedirectNotification(productTitle, targetUrl) {
         <div class="toast-content">
             <i class="fa-solid fa-circle-notch fa-spin"></i>
             <div>
-                <h5>Redirecionando para o Mercado Livre</h5>
+                <h5>Redirecionando para a Shopee</h5>
                 <p>Aplicando cupom de afiliado e abrindo página...</p>
             </div>
         </div>
@@ -86,35 +84,28 @@ function renderProducts() {
     // 1. Filtrar
     let filtered = PRODUTOS.filter(p => {
         const matchesCategory = filterCategory === "todos" || p.category === filterCategory;
-        const matchesSearch = p.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                              p.category.toLowerCase().includes(searchQuery.toLowerCase());
-        return matchesCategory && matchesSearch;
+        return matchesCategory;
     });
 
-    // 2. Ordenar
-    if (sortBy === "price-asc") {
-        filtered.sort((a, b) => a.price - b.price);
-    } else if (sortBy === "price-desc") {
-        filtered.sort((a, b) => b.price - a.price);
-    } else if (sortBy === "discount") {
-        filtered.sort((a, b) => {
-            const discA = calculateDiscount(a.oldPrice, a.price);
-            const discB = calculateDiscount(b.oldPrice, b.price);
-            return discB - discA;
-        });
+    // Busca por termo (searchQuery)
+    if (searchQuery) {
+        const query = searchQuery.toLowerCase();
+        filtered = filtered.filter(p => 
+            p.title.toLowerCase().includes(query) || 
+            (p.description && p.description.toLowerCase().includes(query)) ||
+            p.category.toLowerCase().includes(query)
+        );
     }
 
-    // 3. Atualizar contagem
+    // 2. Atualizar contagem
     if (filtered.length === 0) {
         productGrid.style.display = "none";
         emptyState.style.display = "flex";
-        resultsCount.textContent = "0 produtos encontrados";
         return;
+    } else {
+        productGrid.style.display = "grid";
+        emptyState.style.display = "none";
     }
-
-    productGrid.style.display = "grid";
-    emptyState.style.display = "none";
-    resultsCount.textContent = `${filtered.length} produto${filtered.length > 1 ? 's encontrados' : ' encontrado'}`;
 
     // 4. Montar HTML dos Cards
     productGrid.innerHTML = filtered.map(product => {
@@ -148,7 +139,7 @@ function renderProducts() {
                             ${discountPercent > 0 ? `<span>(${discountPercent}% OFF)</span>` : ''}
                         </div>
                     </div>
-                    <button class="product-action-btn">
+                    <button class="product-action-btn" onclick="event.stopPropagation(); showRedirectNotification('${product.title.replace(/'/g, "\\'")}', '${product.affiliateUrl}')">
                         Comprar <i class="fa-solid fa-chevron-right"></i>
                     </button>
                 </div>
@@ -180,12 +171,6 @@ searchButton.addEventListener("click", () => {
     renderProducts();
 });
 
-// Ordenação
-sortSelect.addEventListener("change", (e) => {
-    sortBy = e.target.value;
-    renderProducts();
-});
-
 // Limpar busca no estado vazio
 clearSearchBtn.addEventListener("click", () => {
     searchInput.value = "";
@@ -208,7 +193,7 @@ window.addEventListener("DOMContentLoaded", () => {
 // ==========================================
 // WHATSAPP E DETECÇÃO DE WEBVIEW (TIKTOK)
 // ==========================================
-const btnWhatsapp = document.getElementById("btn-whatsapp-channel");
+const btnsWhatsapp = document.querySelectorAll(".btn-whatsapp-channel");
 const tiktokModal = document.getElementById("tiktok-modal");
 const closeModal = document.getElementById("close-modal");
 
@@ -226,22 +211,24 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-if (btnWhatsapp) {
-    btnWhatsapp.addEventListener("click", () => {
-        const whatsappUrl = "https://whatsapp.com/channel/0029VbDSNdaHltY6Omi6rV1r";
-        
-        if (isTikTokBrowser()) {
-            // Se estiver no TikTok, mostra o modal
-            tiktokModal.style.display = "flex";
-        } else {
-            // Senão, redireciona pro WhatsApp direto
-            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-            if (isMobile) {
-                window.location.href = whatsappUrl;
+if (btnsWhatsapp.length > 0) {
+    btnsWhatsapp.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const whatsappUrl = "https://whatsapp.com/channel/0029VbDSNdaHltY6Omi6rV1r";
+            
+            if (isTikTokBrowser()) {
+                // Se estiver no TikTok, mostra o modal
+                tiktokModal.style.display = "flex";
             } else {
-                window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+                // Senão, redireciona pro WhatsApp direto
+                const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                if (isMobile) {
+                    window.location.href = whatsappUrl;
+                } else {
+                    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+                }
             }
-        }
+        });
     });
 }
 

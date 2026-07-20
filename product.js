@@ -220,7 +220,7 @@ window.handleBuyClick = function(productId) {
         <div class="toast-content">
             <i class="fa-solid fa-circle-notch fa-spin"></i>
             <div>
-                <h5>Redirecionando para a Loja Oficial</h5>
+                <h5>Redirecionando para a Shopee</h5>
                 <p>Aplicando o melhor desconto de parceiro...</p>
             </div>
         </div>
