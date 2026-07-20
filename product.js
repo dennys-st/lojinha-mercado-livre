@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Buscar o produto no banco de dados compartilhado (PRODUTOS carregado de catalog.js)
     const produto = PRODUTOS.find(p => p.id === productId);
+    window.currentProduct = produto;
 
     const container = document.getElementById("product-detail-container");
 
@@ -143,7 +144,7 @@ function renderProductDetails(container, product) {
 let currentImageIndex = 0;
 
 window.goToImageIndex = function(index) {
-    const product = PRODUTOS[0];
+    const product = window.currentProduct;
     if (!product || !product.images || product.images.length === 0) return;
     
     // Rotação circular de índice
@@ -202,7 +203,7 @@ window.prevImage = function() {
 
 // Alternar imagem principal ao clicar na miniatura da galeria
 window.switchMainImage = function(button, imgUrl) {
-    const product = PRODUTOS[0];
+    const product = window.currentProduct;
     const index = product.images.indexOf(imgUrl);
     if (index > -1) {
         goToImageIndex(index);
