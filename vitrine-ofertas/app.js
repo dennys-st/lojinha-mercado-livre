@@ -204,3 +204,40 @@ window.addEventListener("DOMContentLoaded", () => {
         renderProducts();
     }, 400);
 });
+
+// ==========================================
+// WHATSAPP E DETECÇÃO DE WEBVIEW (TIKTOK)
+// ==========================================
+const btnWhatsapp = document.getElementById("btn-whatsapp-channel");
+const tiktokModal = document.getElementById("tiktok-modal");
+const closeModal = document.getElementById("close-modal");
+
+function isTikTokBrowser() {
+    const ua = navigator.userAgent.toLowerCase();
+    return ua.includes("tiktok") || ua.includes("musical_ly") || ua.includes("bytedance");
+}
+
+if (btnWhatsapp) {
+    btnWhatsapp.addEventListener("click", () => {
+        const whatsappUrl = "https://whatsapp.com/channel/0029VbDSNdaHltY6Omi6rV1r";
+        
+        if (isTikTokBrowser()) {
+            // Se estiver no TikTok, mostra o modal
+            tiktokModal.style.display = "flex";
+        } else {
+            // Senão, redireciona pro WhatsApp direto
+            const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+            if (isMobile) {
+                window.location.href = whatsappUrl;
+            } else {
+                window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+            }
+        }
+    });
+}
+
+if (closeModal) {
+    closeModal.addEventListener("click", () => {
+        tiktokModal.style.display = "none";
+    });
+}
