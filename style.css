@@ -132,6 +132,19 @@ a {
     width: fit-content;
 }
 
+.whatsapp-top-banner {
+    display: flex;
+    justify-content: center;
+    padding: 15px 20px 5px 20px;
+    background-color: var(--color-bg-body);
+}
+
+.whatsapp-top-banner .btn-whatsapp-header {
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+}
+
 /* ==========================================
    BARRA SUPERIOR & HEADER
    ========================================== */
@@ -902,14 +915,11 @@ a {
 .main-image-box {
     width: 100%;
     height: 380px;
-    background: linear-gradient(135deg, #FDF8FA 0%, #F5E1EC 100%);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
 }
 
 .main-image-box > i {
@@ -1197,9 +1207,9 @@ a {
 }
 
 .product-detail-real-img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: var(--radius-md);
 }
 

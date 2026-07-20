@@ -85,13 +85,6 @@ function renderProductDetails(container, product) {
                     <button class="nav-arrow-btn next" onclick="event.stopPropagation(); nextImage()" aria-label="Próxima Imagem">
                         <i class="fa-solid fa-chevron-right"></i>
                     </button>
-
-                    <!-- Indicadores de Pontos -->
-                    <div class="carousel-indicators">
-                        ${product.images.map((_, idx) => `
-                            <span class="indicator-dot ${idx === 0 ? 'active' : ''}" onclick="event.stopPropagation(); goToImageIndex(${idx})"></span>
-                        `).join('')}
-                    </div>
                     ` : ''}
                 </div>
                 ${galleryThumbs ? `<div class="gallery-thumbs">${galleryThumbs}</div>` : ''}
