@@ -214,8 +214,17 @@ const closeModal = document.getElementById("close-modal");
 
 function isTikTokBrowser() {
     const ua = navigator.userAgent.toLowerCase();
-    return ua.includes("tiktok") || ua.includes("musical_ly") || ua.includes("bytedance");
+    // Permite testar pelo PC adicionando ?tiktok=true na URL
+    const isTestMode = window.location.search.includes("tiktok=true");
+    return isTestMode || ua.includes("tiktok") || ua.includes("musical_ly") || ua.includes("bytedance");
 }
+
+// Verifica no carregamento da página
+window.addEventListener("DOMContentLoaded", () => {
+    if (isTikTokBrowser() && tiktokModal) {
+        tiktokModal.style.display = "flex";
+    }
+});
 
 if (btnWhatsapp) {
     btnWhatsapp.addEventListener("click", () => {
