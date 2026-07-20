@@ -732,6 +732,15 @@ a {
     .footer-container {
         grid-template-columns: 1fr;
     }
+    
+    .btn-whatsapp-header {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .back-link {
+        align-self: flex-start;
+    }
 }
 
 /* ==========================================
@@ -914,6 +923,7 @@ a {
     gap: 10px;
     overflow-x: auto;
     padding-bottom: 5px;
+    max-width: 100%; /* Previne estourar a tela */
 }
 
 .thumb-btn {
@@ -1273,6 +1283,9 @@ a {
     }
     .nav-arrow-btn.next {
         right: 8px;
+    }
+    .tiktok-title {
+        font-size: 1.6rem;
     }
 }
 
