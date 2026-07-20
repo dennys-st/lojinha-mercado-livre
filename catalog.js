@@ -70,9 +70,9 @@ const PRODUTOS = [
     {
         "title": "Kit 7 ou 10 Calcinhas Fio Dental Suede Canelado Forro 100% Algodão",
         "category": "moda",
-        "imagePath": "babydoll-rosa.jpg",
+        "imagePath": "https://i.postimg.cc/1nYdVVtW/sg-11134201-7ra12-mbmu02ebiaodaf.webp",
         "images": [
-            "babydoll-rosa.jpg"
+            "https://i.postimg.cc/1nYdVVtW/sg-11134201-7ra12-mbmu02ebiaodaf.webp"
         ],
         "affiliateUrl": "https://s.shopee.com.br/111TcwwJh3",
         "price": 37.33,
