@@ -58,7 +58,7 @@ function renderProductDetails(container, product) {
     `).join('');
 
     // Montar miniaturas da galeria com imagens reais
-    const galleryThumbs = product.images && product.images.length > 0 ? product.images.map((imgUrl, index) => `
+    const galleryThumbs = product.images && product.images.length > 1 ? product.images.map((imgUrl, index) => `
         <button class="thumb-btn ${index === 0 ? 'active' : ''}" onclick="switchMainImage(this, '${imgUrl}')" aria-label="Visualizar foto ${index + 1}">
             <img src="${imgUrl}" alt="Miniatura ${index + 1}" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-sm);">
         </button>
@@ -70,14 +70,17 @@ function renderProductDetails(container, product) {
             
             <!-- Coluna Esquerda: Galeria de Imagens -->
             <div class="product-gallery">
-                <div class="main-image-box" id="main-image-box" onclick="nextImage()" style="position: relative; cursor: pointer;">
+                <div class="main-image-box" id="main-image-box" ${product.images && product.images.length > 1 ? 'onclick="nextImage()" style="cursor: pointer;"' : ''} style="position: relative;">
+                    ${product.images && product.images.length > 1 ? `
                     <!-- Seta Esquerda -->
                     <button class="nav-arrow-btn prev" onclick="event.stopPropagation(); prevImage()" aria-label="Imagem Anterior">
                         <i class="fa-solid fa-chevron-left"></i>
                     </button>
+                    ` : ''}
                     
                     <img src="${product.imagePath}" alt="${product.title}" class="product-detail-real-img" id="main-image-pic">
                     
+                    ${product.images && product.images.length > 1 ? `
                     <!-- Seta Direita -->
                     <button class="nav-arrow-btn next" onclick="event.stopPropagation(); nextImage()" aria-label="Próxima Imagem">
                         <i class="fa-solid fa-chevron-right"></i>
@@ -89,6 +92,7 @@ function renderProductDetails(container, product) {
                             <span class="indicator-dot ${idx === 0 ? 'active' : ''}" onclick="event.stopPropagation(); goToImageIndex(${idx})"></span>
                         `).join('')}
                     </div>
+                    ` : ''}
                 </div>
                 ${galleryThumbs ? `<div class="gallery-thumbs">${galleryThumbs}</div>` : ''}
             </div>
