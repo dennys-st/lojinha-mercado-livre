@@ -84,17 +84,52 @@
         </div>
     </footer>
 
-    <!-- Modal TikTok -->
-    <div id="tiktok-modal" class="modal-overlay" style="display: none;">
-        <div class="modal-content">
-            <div class="warning-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
-            <h3>Abra no Navegador</h3>
-            <p style="margin-top: 10px; color: var(--color-text-muted);">Você está no navegador interno do TikTok. Para entrar no canal do WhatsApp, abra este link no navegador externo do seu celular.</p>
-            <div class="modal-steps">
-                <p>1️⃣ Toque no botão de Compartilhar</p>
-                <p>2️⃣ Escolha a opção <b>'Abrir no navegador'</b></p>
+    <!-- Tela Cheia TikTok -->
+    <div id="tiktok-modal" class="tiktok-fullscreen" style="display: none;">
+        <div class="tiktok-content">
+            
+            <div class="tiktok-pointer-area">
+                <div class="pointer-text">
+                    👆 CLIQUE NOS<br>3 PONTINHOS
+                </div>
+                <div class="pointer-arrow">
+                    <!-- Seta verde apontando para o canto superior direito (onde ficam os 3 pontinhos no TikTok) -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="19" x2="12" y2="5"></line>
+                        <polyline points="5 12 12 5 19 12"></polyline>
+                    </svg>
+                </div>
             </div>
-            <button id="close-modal" class="btn btn-primary" style="width: 100%;">Entendi</button>
+
+            <div class="warning-circle">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            
+            <h1 class="tiktok-title">Antes de entrar no grupo do WhatsApp</h1>
+            <p class="tiktok-subtitle">O navegador do TikTok pode impedir a abertura do WhatsApp.</p>
+            
+            <h3 class="tiktok-steps-title">Siga os 3 passos:</h3>
+            
+            <div class="tiktok-steps">
+                <div class="tiktok-step-card">
+                    <div class="step-number">1</div>
+                    <p>Toque nos 3 pontinhos (⋮) no canto superior direito</p>
+                </div>
+                <div class="tiktok-step-card">
+                    <div class="step-number">2</div>
+                    <p>Toque em "Abrir no navegador"</p>
+                </div>
+                <div class="tiktok-step-card">
+                    <div class="step-number">3</div>
+                    <p>Volte para esta página e clique no botão verde</p>
+                </div>
+            </div>
+            
+            <div class="tiktok-bottom">
+                <button id="close-modal" class="btn-whatsapp-large">
+                    Já abri no navegador
+                </button>
+            </div>
         </div>
     </div>
 
