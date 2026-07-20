@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome for Premium Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=1.1.2">
+    <link rel="stylesheet" href="style.css?v=1.1.3">
 </head>
 <body>
     <!-- Top Alert Bar -->
@@ -30,12 +30,15 @@
                 <input type="text" id="search-input" placeholder="Buscar produtos em promoção..." autocomplete="off">
                 <button type="button" id="search-button" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
-            
-            <button id="btn-whatsapp-channel" class="btn btn-whatsapp-header">
-                <i class="fa-brands fa-whatsapp"></i> Promoções e Ofertas
-            </button>
         </div>
     </header>
+
+    <!-- Botão WhatsApp (Rola com a página) -->
+    <div class="whatsapp-top-banner">
+        <button class="btn btn-whatsapp-header btn-whatsapp-channel">
+            <i class="fa-brands fa-whatsapp"></i> Promoções e Ofertas
+        </button>
+    </div>
 
 
 
@@ -46,16 +49,6 @@
         <div class="catalog-header">
             <div class="catalog-title">
                 <h2>Vitrine de Ofertas</h2>
-                <p id="results-count">Carregando ofertas...</p>
-            </div>
-            <!-- Quick filters sorting -->
-            <div class="catalog-filters">
-                <select id="sort-select" aria-label="Ordenar produtos">
-                    <option value="default">Ordenar por: Destaques</option>
-                    <option value="price-asc">Menor Preço</option>
-                    <option value="price-desc">Maior Preço</option>
-                    <option value="discount">Maior Desconto</option>
-                </select>
             </div>
         </div>
 
@@ -73,6 +66,12 @@
             <h3>Nenhum produto encontrado</h3>
             <p>Tente buscar por outro termo ou mude a categoria selecionada.</p>
             <button class="btn btn-primary" id="clear-search">Ver todos os produtos</button>
+        </div>
+
+        <div style="display: flex; justify-content: center; padding: 40px 20px 20px 20px;">
+            <button class="btn btn-whatsapp-header btn-whatsapp-channel" style="width: 100%; max-width: 400px; justify-content: center;">
+                <i class="fa-brands fa-whatsapp"></i> Promoções e Ofertas
+            </button>
         </div>
     </main>
 
@@ -128,7 +127,7 @@
     </div>
 
     <!-- Script file -->
-    <script src="catalog.js?v=1.1.2" defer></script>
-    <script src="app.js?v=1.1.2" defer></script>
+    <script src="catalog.js?v=1.1.3" defer></script>
+    <script src="app.js?v=1.1.3" defer></script>
 </body>
 </html>
