@@ -1338,6 +1338,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    animation: bounceUp 1s ease-in-out infinite alternate;
 }
 .pointer-arrow svg {
     width: 24px;
@@ -1435,4 +1436,8 @@ a {
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+}
+@keyframes bounceUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-12px); }
 }
